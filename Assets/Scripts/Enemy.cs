@@ -17,10 +17,14 @@ public class Enemy : MonoBehaviour {
     public AudioClip zombieDieSound;
     public AudioClip zombieHitSound;
     public GameObject bloodParticle;
+	public float _walkingSpeed = 0.4f;
+
+	public float walkingSpeed { get { return _walkingSpeed; } }
 
     void Start()
     {
         scoreKeeper = GameObject.Find("score").GetComponent<ScoreKeeper>();
+		_walkingSpeed = -(Random.Range (1.0f, 2.0f));
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -30,8 +34,6 @@ public class Enemy : MonoBehaviour {
         {
             EnemyHit(laser);
         }
-        else if (col.gameObject.layer == 10)
-            EnemyVaporized();
     }
 
     void EnemyHit(Projectile laser)
@@ -48,20 +50,6 @@ public class Enemy : MonoBehaviour {
             GetComponent<SpriteRenderer>().sprite = EnemyHitSprite;
             AudioSource.PlayClipAtPoint(zombieHitSound, transform.position);
         }
-    }
-
-    void EnemyVaporized()
-    {
-        health = 0;
-        for(int i = 0; i < 13; i ++)
-        {
-            Vector2 tmpOffset = new Vector2(transform.position.x + Random.Range(-0.3f, 0.3f),  transform.position.y + Random.Range(-0.3f, 0.3f));
-            Instantiate(bloodParticle, tmpOffset, Quaternion.identity);
-
-        }
-        
-
-        KillEnemy();
     }
 
     void Update()

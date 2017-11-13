@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
     public AudioClip shootSound;
     bool isTriggered = false;
     public GameObject superLaser;
-    bool superLaserActive = false;
     GameObject sl;
 
     void Start ()
@@ -85,11 +84,10 @@ public class PlayerController : MonoBehaviour {
         if(sl)
             Destroy(sl);
     }
+
     void activateSuperLaser()
     {
-        superLaserActive = true;
-
-        Vector3 offset = new Vector3(1, 0);
+        Vector3 offset = new Vector3(0.8f, 0.7f);
         sl = Instantiate(superLaser, transform.position + offset, Quaternion.identity) as GameObject;
 
         sl.transform.parent = transform;

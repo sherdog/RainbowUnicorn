@@ -40,7 +40,6 @@ public class LaserScript : MonoBehaviour {
 			float randomOpacity = Random.Range (0.2f, 0.3f);
             //get current color
 
-
             if (lightStart && lightMiddle)
             {
                 float colorR = lightStart.GetComponent<SpriteRenderer>().color.r;

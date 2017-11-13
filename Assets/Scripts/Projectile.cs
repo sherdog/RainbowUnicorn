@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    public float damage = 100f;
+	public enum ProjectileType {PLAYER_LASER, ZOMBIE_LASER, SUPER_LASER};
+    public float damage;
+	public ProjectileType projectileType = ProjectileType.PLAYER_LASER;
 
     public void Hit()
     {
-        Destroy(gameObject);
+		if (projectileType != ProjectileType.SUPER_LASER) {
+			Destroy (gameObject);
+		}
     }
-
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
 }

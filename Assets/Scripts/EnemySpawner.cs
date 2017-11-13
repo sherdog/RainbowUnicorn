@@ -18,10 +18,17 @@ public class EnemySpawner : MonoBehaviour {
 
     public GameObject enemyPrefab;
 
+	public void StartSpawning(int totalEnemies, int currentlevel)
+	{
+		//Current level.. higher the level higher the possible spawn count;
+
+		//just start spawning eneies.
+		//
+	}
+
 	void Start () {
 
         float distance = transform.position.z - Camera.main.transform.position.z;
-
         Vector3 topMost = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, distance));
         Vector3 bottomMost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance));
 
@@ -44,10 +51,6 @@ public class EnemySpawner : MonoBehaviour {
 
             transform.position += Vector3.down * ((direction * speed) * Time.deltaTime);
 
-            //  float newY = Mathf.Clamp(transform.position.y, minY, maxY);
-
-            // transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-
             if (AllEnemiesAllDead())
             {
                 SpawnUntilFull();
@@ -59,8 +62,6 @@ public class EnemySpawner : MonoBehaviour {
     void StartGame()
     {
         GameState.RoundStarted = true;
-
-        
         gameStarted = true;
     }
 
